@@ -22,6 +22,11 @@ namespace MVC.Controllers
         // {
         //     return View();
         // }
+        public IActionResult Index()
+        {
+            //Test Added
+            return View();
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
