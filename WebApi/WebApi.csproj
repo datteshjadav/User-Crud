@@ -10,6 +10,9 @@
     <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
     <PackageReference Include="Npgsql" Version="8.0.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+
+    <!-- Reference to API Project -->
+    <ProjectReference Include="../WebApi/WebApi.csproj" />
   </ItemGroup>
 
 </Project>
