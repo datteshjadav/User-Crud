@@ -5,17 +5,22 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using MVC.Repositories;
 
 namespace MVC.Controllers
 {
-    [Route("[controller]")]
+    // [Route("[controller]")]
     public class StudentController : Controller
     {
         private readonly ILogger<StudentController> _logger;
+        private readonly IStudentInterface _studentInterface;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public StudentController(ILogger<StudentController> logger)
+        public StudentController(ILogger<StudentController> logger, IStudentInterface studentInterface, IHttpContextAccessor httpContextAccessor)
         {
             _logger = logger;
+            _studentInterface = studentInterface;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public IActionResult Index()
