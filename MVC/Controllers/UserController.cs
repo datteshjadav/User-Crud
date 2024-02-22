@@ -18,8 +18,13 @@ namespace MVC.Controllers
             _logger = logger;
         }
 
+        // public IActionResult Index()
+        // {
+        //     return View();
+        // }
         public IActionResult Index()
         {
+            //Test Added
             return View();
         }
 
