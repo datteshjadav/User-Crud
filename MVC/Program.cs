@@ -1,7 +1,12 @@
+using WebApi.Repositories;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//Registering Repositories
+builder.Services.AddSingleton<IUserInterface,UserHelperClass>();
 
 var app = builder.Build();
 
