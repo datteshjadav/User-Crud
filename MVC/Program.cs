@@ -8,7 +8,7 @@ builder.Services.AddControllersWithViews();
 
 //Registering Repositories
 builder.Services.AddSingleton<IUserInterface,UserHelperClass>();
-builder.Services.AddSingleton<IStudentInterface,StudentHelpderClass>();
+builder.Services.AddSingleton<IStudentInterface,StudentRepo>();
 
 var app = builder.Build();
 

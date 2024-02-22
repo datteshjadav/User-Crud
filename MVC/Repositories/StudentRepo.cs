@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace MVC.Repositories
 {
-    public interface IStudentInterface
+    public class StudentRepo : IStudentInterface
     {
         
     }
