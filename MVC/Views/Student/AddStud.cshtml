@@ -4,28 +4,78 @@
     ViewData["Title"] = "AddStudent";
 }
 
-<h2>Add Student</h2>
+<div class="container">
+    <h2>Add Student</h2>
 
-<form asp-action="AddStud">
-    <div>
-        <label asp-for="c_studname">Student Name:</label>
-        <input asp-for="c_studname" />
-    </div>
-    <div>
-        <label asp-for="c_studage">Age:</label>
-        <input asp-for="c_studage" />
-    </div>
-    <div>
-        <label asp-for="c_studphone">Phone:</label>
-        <input asp-for="c_studphone" />
-    </div>
+    <form asp-action="AddStud" class="needs-validation" novalidate>
+        <div class="form-group">
+            <label asp-for="c_studname">Student Name:</label>
+            <input asp-for="c_studname" class="form-control" required />
+            <div class="invalid-feedback">
+                Please enter the student's name.
+            </div>
+        </div>
 
+        <div class="form-group">
+            <label asp-for="c_studage">Age:</label>
+            <input asp-for="c_studage" class="form-control" required />
+            <div class="invalid-feedback">
+                Please enter the student's age.
+            </div>
+        </div>
 
-    <div>
-        <label asp-for="c_studaddress">Phone:</label>
-        <input asp-for="c_studaddress" />
-    </div>
-    <button type="submit" class="btn btn-primary">Add Student</button>
-</form>
+        <div class="form-group">
+            <label asp-for="c_studphone">Phone:</label>
+            <input asp-for="c_studphone" class="form-control" required />
+            <div class="invalid-feedback">
+                Please enter the student's phone number.
+            </div>
+        </div>
 
-<a asp-action="GetAllStudData" class="btn btn-primary">Back to List</a>
+        <div class="form-group">
+            <label asp-for="c_studcourse">Select Course:</label>
+            <select asp-for="c_studcourse" class="form-control" required>
+                <option value="">-- Select Course --</option>
+                <option value="MCA">MCA</option>
+                <option value="ICT">ICT</option>
+                <option value="BTech">BTech</option>
+            </select>
+            <div class="invalid-feedback">
+                Please select a course.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="c_studaddress">Address:</label>
+            <input asp-for="c_studaddress" class="form-control" required />
+            <div class="invalid-feedback">
+                Please enter the student's address.
+            </div>
+        </div><br>
+
+        <button type="submit" class="btn btn-primary">Add Student</button>
+        <a asp-action="GetAllStudData" class="btn btn-secondary">Back to List</a>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        // Bootstrap validation setup
+        (function () {
+            'use strict'
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+    </script>
+}

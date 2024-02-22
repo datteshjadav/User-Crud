@@ -1,46 +1,45 @@
 @model List<StudentModel>
 
-
 @{
     ViewData["Title"] = "GetAllStudent";
 }
 
-
 <h2>Get All Student Data</h2>
-
 
 <p>
     <a asp-action="AddStud" class="btn btn-primary">Add New Student</a>
 </p>
 
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>Student Id</th>
-            <th>Student Name</th>
-            <th>Student Age</th>
-            <th>Student MobNo</th>
-            <th>Student Course</th>
-            <th>Student Address</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var student in Model)
-        {
+<div class="table-responsive">
+    <table class="table table-striped table-hover">
+        <thead class="thead-dark">
             <tr>
-                <td>@student.c_studid</td>
-                <td>@student.c_studname</td>
-                <td>@student.c_studage</td>
-                <td>@student.c_studphone</td>
-                <td>@student.c_studcourse</td>
-                <td>@student.c_studaddress</td>
-                <td>
-                    <a asp-action="GetAllStudDetails" asp-route-id="@student.c_studid" class="btn btn-secondary">Details</a> 
-                    <a asp-action="UpdateStud" asp-route-id="@student.c_studid" class="btn btn-warning">Edit</a> 
-                    <a asp-action="DeleteStud" asp-route-id="@student.c_studid" class="btn btn-danger">Delete</a>
-                </td>
+                <th>Student Id</th>
+                <th>Student Name</th>
+                <th>Student Age</th>
+                <th>Student MobNo</th>
+                <th>Student Course</th>
+                <th>Student Address</th>
+                <th>Action</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var student in Model)
+            {
+                <tr>
+                    <td>@student.c_studid</td>
+                    <td>@student.c_studname</td>
+                    <td>@student.c_studage</td>
+                    <td>@student.c_studphone</td>
+                    <td>@student.c_studcourse</td>
+                    <td>@student.c_studaddress</td>
+                    <td>
+                        <a asp-action="GetAllStudDetails" asp-route-id="@student.c_studid" class="btn btn-info">Details</a>
+                        <a asp-action="UpdateStud" asp-route-id="@student.c_studid" class="btn btn-warning">Edit</a>
+                        <a asp-action="DeleteStud" asp-route-id="@student.c_studid" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

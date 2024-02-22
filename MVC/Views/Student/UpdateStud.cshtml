@@ -4,28 +4,82 @@
     ViewData["Title"] = "UpdateStudentData";
 }
 
-<h2>Update Book Data</h2>
+<div class="container">
+    <h2>Update Book Data</h2>
 
-<form asp-action="UpdateStud">
-    <input type="hidden" asp-for="c_studid" />
-    <div>
-        <label asp-for="c_studname">Student Name:</label>
-        <input asp-for="c_studname" />
-    </div>
-    <div>
-        <label asp-for="c_studage">Age:</label>
-        <input asp-for="c_studage" />
-    </div>
-    <div>
-        <label asp-for="c_studphone">Phone:</label>
-        <input asp-for="c_studphone" />
-    </div>
-    <div>
-        <label asp-for="c_studaddress">Phone:</label>
-        <input asp-for="c_studaddress" />
-    </div>
+    <form asp-action="UpdateStud" class="needs-validation" novalidate>
 
-    <button type="submit" class="btn btn-primary">Update Student</button>
-</form>
+        <input type="hidden" asp-for="c_studid" />
 
-<a asp-action="GetAllStudData">Back to List</a>
+        <div class="form-group">
+            <label asp-for="c_studname">Student Name:</label>
+            <input asp-for="c_studname" class="form-control" required />
+            <div class="invalid-feedback">
+                Please enter the student's name.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="c_studage">Age:</label>
+            <input asp-for="c_studage" class="form-control" required />
+            <div class="invalid-feedback">
+                Please enter the student's age.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="c_studphone">Phone:</label>
+            <input asp-for="c_studphone" class="form-control" required />
+            <div class="invalid-feedback">
+                Please enter the student's phone number.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="c_studcourse">Select Course:</label>
+            <select asp-for="c_studcourse" class="form-control" required>
+                <option value="MCA">MCA</option>
+                <option value="ICT">ICT</option>
+                <option value="BTech">BTech</option>
+                <!-- Add more options as needed -->
+            </select>
+            <div class="invalid-feedback">
+                Please select a course.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="c_studaddress">Address:</label>
+            <input asp-for="c_studaddress" class="form-control" required />
+            <div class="invalid-feedback">
+                Please enter the student's address.
+            </div>
+        </div><br>
+
+        <button type="submit" class="btn btn-primary">Update Student</button>
+        @* <a asp-action="GetAllStudData" class="btn btn-secondary">Back to List</a> *@
+    </form>
+    <a asp-action="GetAllStudData">Back to List</a> 
+</div>
+
+@section Scripts {
+    <script>
+        // Bootstrap validation setup
+        (function () {
+            'use strict'
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+    </script>
+}
