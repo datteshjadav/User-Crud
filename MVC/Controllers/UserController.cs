@@ -5,17 +5,24 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using MVC.Models;
+using WebApi.Repositories;
+
 
 namespace MVC.Controllers
 {
-    [Route("[controller]")]
+
+
+    // [Route("[controller]")]
     public class UserController : Controller
     {
-        private readonly ILogger<UserController> _logger;
+        private readonly IUserInterface _helper;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public UserController(ILogger<UserController> logger)
+        public UserController(IHttpContextAccessor httpContextAccessor, IUserInterface Helper)
         {
-            _logger = logger;
+            _httpContextAccessor = httpContextAccessor;
+            _helper = Helper;
         }
 
         // public IActionResult Index()
@@ -24,6 +31,22 @@ namespace MVC.Controllers
         // }
 
         #region Login Methods
+
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Login(LoginModel user)
+        {
+            if (_helper.Login(user))
+            {
+
+                return RedirectToAction("Index", "Home");
+            }
+            return RedirectToAction("Login", "User");
+        }
 
         #endregion
 
