@@ -103,8 +103,8 @@ namespace MVC.Repositories
                                 c_studid = (int)reader["c_studid"],
                                 c_studname = (string)reader["c_studname"],
                                 c_studage = (int)reader["c_studage"],
-                                c_studphone = (int)reader["c_studphone"],
-                                c_studcourse = (string[])reader["c_studcourse"],
+                                c_studphone = (long)reader["c_studphone"], //Changed (int)reader["c_studphone"] To (long)reader["c_studphone"]
+                                c_studcourse = (string)reader["c_studcourse"], //Changed (string[])reader["c_studcourse"] To (string)reader["c_studcourse"]
                                 c_studaddress = (string)reader["c_studaddress"]
                             };
                             studList.Add(studs);
@@ -141,8 +141,8 @@ namespace MVC.Repositories
                                 c_studid = (int)reader["c_studid"],
                                 c_studname = (string)reader["c_studname"],
                                 c_studage = (int)reader["c_studage"],
-                                c_studphone = (int)reader["c_studphone"],
-                                c_studcourse = (string[])reader["c_studcourse"],
+                                c_studphone = (long)reader["c_studphone"], //Changed (int)reader["c_studphone"] To (long)reader["c_studphone"]
+                                c_studcourse = (string)reader["c_studcourse"], //Changed (string[])reader["c_studcourse"] To (string)reader["c_studcourse"]
                                 c_studaddress = (string)reader["c_studaddress"]
                             };
                         }

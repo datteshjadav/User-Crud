@@ -1,0 +1,31 @@
+@model StudentModel
+
+@{
+    ViewData["Title"] = "AddStudent";
+}
+
+<h2>Add Student</h2>
+
+<form asp-action="AddStud">
+    <div>
+        <label asp-for="c_studname">Student Name:</label>
+        <input asp-for="c_studname" />
+    </div>
+    <div>
+        <label asp-for="c_studage">Age:</label>
+        <input asp-for="c_studage" />
+    </div>
+    <div>
+        <label asp-for="c_studphone">Phone:</label>
+        <input asp-for="c_studphone" />
+    </div>
+
+
+    <div>
+        <label asp-for="c_studaddress">Phone:</label>
+        <input asp-for="c_studaddress" />
+    </div>
+    <button type="submit" class="btn btn-primary">Add Student</button>
+</form>
+
+<a asp-action="GetAllStudData" class="btn btn-primary">Back to List</a>

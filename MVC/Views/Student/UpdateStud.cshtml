@@ -1,0 +1,31 @@
+@model StudentModel
+
+@{
+    ViewData["Title"] = "UpdateStudentData";
+}
+
+<h2>Update Book Data</h2>
+
+<form asp-action="UpdateStud">
+    <input type="hidden" asp-for="c_studid" />
+    <div>
+        <label asp-for="c_studname">Student Name:</label>
+        <input asp-for="c_studname" />
+    </div>
+    <div>
+        <label asp-for="c_studage">Age:</label>
+        <input asp-for="c_studage" />
+    </div>
+    <div>
+        <label asp-for="c_studphone">Phone:</label>
+        <input asp-for="c_studphone" />
+    </div>
+    <div>
+        <label asp-for="c_studaddress">Phone:</label>
+        <input asp-for="c_studaddress" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update Student</button>
+</form>
+
+<a asp-action="GetAllStudData">Back to List</a>
