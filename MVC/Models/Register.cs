@@ -19,9 +19,15 @@ namespace MVC.Models
         public string c_email { get; set; } = string.Empty;
 
         [Display(Name = "Password")]
-        [Required(ErrorMessage = "Name Must Be Required.")]
+        [Required(ErrorMessage = "Password Must Be Required.")]
         [RegularExpression(@"^[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)$")]
         public string c_password { get; set; } = string.Empty;
+
+        [Display(Name = "CPassword")]
+        [Required(ErrorMessage = "Confirm Password can't be Empty")]
+        [Compare("c_password", ErrorMessage = "Password & Confirm Password Must Be Same")]
+        [DataType(DataType.Password)]
+        public string? c_confirmpassword { get; set; }
 
         [Display(Name = "Gender ")]
         [Required(ErrorMessage = "Select Any One.")]
