@@ -9,13 +9,12 @@ namespace MVC.Models
     public class LoginModel
     {
     
-        [Required(ErrorMessage ="Please enter your registered email")]
-        public string?  c_email{ get; set; }=string.Empty;
-
+        [Required(ErrorMessage = "Email needs to be correct")]
+        [RegularExpression(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$", ErrorMessage = "Please enter a valid email address.")]
+        public string? c_email{ get; set;}
         [DataType(DataType.Password)]
-        [Required(ErrorMessage = "Password is required")]
-        [RegularExpression(@"^[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)$")]
-        public string? c_password{get;set;}=string.Empty;
+        [Required(ErrorMessage ="Password can't be blank")]
+        public string? c_password { get; set; }
         
     }
 }
