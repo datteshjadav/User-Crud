@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 
 namespace MVC.Controllers
 {
-    //[Route("[controller]")]
+    [Route("[controller]")]
     public class UserController : Controller
     {
         private readonly ILogger<UserController> _logger;
@@ -22,22 +22,22 @@ namespace MVC.Controllers
         // {
         //     return View();
         // }
-        public IActionResult Index()
-        {
-            //Test Added
-            return View();
-        }
 
-        public IActionResult Register()
-        {
-            return View();
-        }
+        #region Login Methods
 
-        public IActionResult Login()
-        {
-            //Test Added
-            return View();
-        }
+        #endregion
+
+
+        #region Register Methods
+
+        #endregion
+
+
+
+
+
+
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
