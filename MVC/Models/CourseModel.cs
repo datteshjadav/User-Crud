@@ -7,6 +7,7 @@ namespace MVC.Models
 {
     public class CourseModel
     {
-        
+        public int c_courseid {get;set;} = 0;
+        public string c_studname {get;set;} = string.Empty;
     }
 }
