@@ -51,5 +51,10 @@ namespace WebApi.Repositories
             }
             return isUserAuthenticated;
         }
+    
+        public void SignOut(){
+            var session = _httpContextAccessor.HttpContext.Session;
+            session.Clear();
+        }
     }
 }

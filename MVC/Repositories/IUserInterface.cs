@@ -9,5 +9,6 @@ namespace WebApi.Repositories
     public interface IUserInterface
     {
         bool Login(LoginModel user);
+        void SignOut();
     }
 }

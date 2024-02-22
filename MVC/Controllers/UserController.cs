@@ -16,13 +16,13 @@ namespace MVC.Controllers
     // [Route("[controller]")]
     public class UserController : Controller
     {
-        private readonly IUserInterface _helper;
+        private readonly IUserInterface _UserHelper;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
         public UserController(IHttpContextAccessor httpContextAccessor, IUserInterface Helper)
         {
             _httpContextAccessor = httpContextAccessor;
-            _helper = Helper;
+            _UserHelper = Helper;
         }
 
         // public IActionResult Index()
@@ -40,12 +40,30 @@ namespace MVC.Controllers
         [HttpPost]
         public IActionResult Login(LoginModel user)
         {
-            if (_helper.Login(user))
+            var session = _httpContextAccessor.HttpContext.Session;
+            if (session.GetInt32("userid") == null)
             {
-
-                return RedirectToAction("Index", "Home");
+                if (_UserHelper.Login(user))
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    return RedirectToAction("Login", "User");
+                }
             }
-            return RedirectToAction("Login", "User");
+            else
+            {
+                return RedirectToAction("Login", "User");
+            }
+
+
+        }
+        [HttpGet]
+        public IActionResult SignOut()
+        {
+            _UserHelper.SignOut();
+            return RedirectToAction("Login");
         }
 
         #endregion
