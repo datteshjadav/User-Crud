@@ -5,30 +5,50 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using MVC.Models;
+using WebApi.Repositories;
+
 
 namespace MVC.Controllers
 {
-    //[Route("[controller]")]
+
+
+    // [Route("[controller]")]
     public class UserController : Controller
     {
-        private readonly ILogger<UserController> _logger;
+        private readonly IUserInterface _UserHelper;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public UserController(ILogger<UserController> logger)
+        public UserController(IHttpContextAccessor httpContextAccessor, IUserInterface Helper)
         {
-            _logger = logger;
+            _httpContextAccessor = httpContextAccessor;
+            _UserHelper = Helper;
         }
 
         // public IActionResult Index()
         // {
         //     return View();
         // }
+<<<<<<<<< Temporary merge branch 1
+        public IActionResult Index()
+        {
+            //Test Added
+            return View();
+        }
 
-        #region Login Methods
-
-        public IActionResult Login()
+        public IActionResult Register()
         {
             return View();
         }
+
+        public IActionResult Login()
+        {
+            //Test Added
+            return View();
+        }
+=========
+
+        #region Login Methods
 
         #endregion
 

@@ -1,4 +1,4 @@
-@* @model tblLogin *@
+@model LoginModel
 
 @{
     ViewData["Title"] = "Login";
@@ -10,12 +10,11 @@
         <form  method="POST" asp-controller="User" asp-action="Login">
             <div class="mb-3">
                 <label for="inputEmail" class="form-label">Email address</label>
-                @* <input type="email" class="form-control" id="inputEmail" placeholder="Email" asp-for="c_email"> *@
-                @* <span class="text-danger">@Html.ValidationMessageFor(Model => Model.c_email)</span> *@
+                <input type="email" class="form-control" id="inputEmail" placeholder="Email" asp-for="c_email"> 
             </div>
             <div class="mb-3">
                 <label for="inputPassword" class="form-label">Password</label>
-                @* <input type="password" class="form-control" id="inputPassword" placeholder="Password" asp-for="c_password"  > *@
+                <input type="password" class="form-control" id="inputPassword" placeholder="Password" asp-for="c_password">
                 @* <span class="text-danger">@Html.ValidationMessageFor(Model => Model.c_password)</span> *@
             </div>
             <button type="submit" class="btn btn-primary">Login</button>
