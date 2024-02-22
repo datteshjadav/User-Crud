@@ -7,10 +7,10 @@ using Npgsql;
 
 namespace MVC.Repositories
 {
-    public class StudRepo : IStud
+    public class StudentHelpderClass : IStudentInterface
     {
         private readonly string? conn;
-        public StudRepo(IConfiguration configuration)
+        public StudentHelpderClass(IConfiguration configuration)
         {
             conn = configuration.GetConnectionString("ConStr");
         }

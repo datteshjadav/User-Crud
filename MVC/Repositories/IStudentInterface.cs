@@ -6,7 +6,7 @@ using MVC.Models;
 
 namespace MVC.Repositories
 {
-    public interface IStud
+    public interface IStudentInterface
     {
         string AddStudent(StudentModel student);
         string[] GetCourse();
