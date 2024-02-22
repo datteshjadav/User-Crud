@@ -1,0 +1,57 @@
+@model Register
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <h2>Register</h2>
+        <form method="POST" asp-controller="User" asp-action="Register" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="inputUsername" class="form-label">Username</label>
+                <input type="text" class="form-control" id="inputUsername" placeholder="Username" asp-for="Username">
+                <span class="text-danger">@Html.ValidationMessageFor(Model => Model.Username)</span>
+            </div>
+            <div class="mb-3">
+                <label for="inputEmail" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="inputEmail" placeholder="Email" asp-for="Email">
+                <span class="text-danger">@Html.ValidationMessageFor(Model => Model.Email)</span>
+            </div>
+            <div class="mb-3">
+                <label for="inputPassword" class="form-label">Password</label>
+                <input type="password" class="form-control" id="inputPassword" placeholder="Password" asp-for="Password">
+                <span class="text-danger">@Html.ValidationMessageFor(Model => Model.Password)</span>
+            </div>
+            <div class="mb-3">
+                <label for="inputConfirmPassword" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" id="inputConfirmPassword" placeholder="Confirm Password" asp-for="ConfirmPassword">
+                <span class="text-danger">@Html.ValidationMessageFor(Model => Model.ConfirmPassword)</span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Gender</label><br>
+                <input type="radio" id="male" name="gender" value="Male">
+                <label for="male">Male</label><br>
+                <input type="radio" id="female" name="gender" value="Female">
+                <label for="female">Female</label><br>
+                <input type="radio" id="other" name="gender" value="Other">
+                <label for="other">Other</label><br>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Hobby</label><br>
+                <input type="checkbox" id="hobby1" name="hobby" value="Hobby1">
+                <label for="hobby1">Hobby 1</label><br>
+                <input type="checkbox" id="hobby2" name="hobby" value="Hobby2">
+                <label for="hobby2">Hobby 2</label><br>
+                <input type="checkbox" id="hobby3" name="hobby" value="Hobby3">
+                <label for="hobby3">Hobby 3</label><br>
+            </div>
+            <div class="mb-3">
+                <label for="inputImage" class="form-label">Image</label>
+                <input type="file" class="form-control" id="inputImage" asp-for="Image">
+                <span class="text-danger">@Html.ValidationMessageFor(Model => Model.Image)</span>
+            </div>
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+    </div>
+</div>
