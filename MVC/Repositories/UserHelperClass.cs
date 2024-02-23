@@ -33,6 +33,7 @@ namespace WebApi.Repositories
                         //image processing
 
                         con.Open();
+                        cmd.ExecuteNonQuery();
                     }
                 }
                 catch (Exception e)

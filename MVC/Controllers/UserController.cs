@@ -44,7 +44,7 @@ namespace MVC.Controllers
         public IActionResult Register(Register register)
         {
             _userHelperClass.Register(register);
-            return RedirectToAction("Login","User");
+            return RedirectToAction("Index","Home");
         }
 
         #endregion
