@@ -22,7 +22,7 @@ namespace WebApi.Repositories
             {
                 try
                 {
-                    var qry = "SELECT c_userid,c_username,c_email,c_password,c_gender,c_hobby,c_image FROM city_kendo.t_register ORDER BY c_userid";
+                    var qry = "SELECT c_userid,c_username,c_email,c_password,c_gender,c_hobby,c_image FROM mvc_repo.t_register ORDER BY c_userid";
                     using (NpgsqlCommand cmd = new NpgsqlCommand(qry, con))
                     {
                         con.Open();
