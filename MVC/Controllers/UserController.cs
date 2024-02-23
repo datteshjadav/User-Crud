@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using WebApi.Repositories;
 
 namespace MVC.Controllers
 {
@@ -12,10 +13,11 @@ namespace MVC.Controllers
     public class UserController : Controller
     {
         private readonly ILogger<UserController> _logger;
-
-        public UserController(ILogger<UserController> logger)
+        private readonly IUserInterface _userHelperClass;
+        public UserController(ILogger<UserController> logger, IUserInterface userHelperClass)
         {
             _logger = logger;
+            _userHelperClass = userHelperClass;
         }
 
         // public IActionResult Index()
@@ -30,8 +32,17 @@ namespace MVC.Controllers
 
         #region Register Methods
 
+        // [Produces("application/json")]
+
+        [HttpGet]
+        public IActionResult GetUserRegister()
+        {
+            var user = _userHelperClass.GetUserRegister();
+            return View(user);
+        }
+
         #endregion
-        
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
