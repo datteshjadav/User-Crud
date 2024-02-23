@@ -29,6 +29,7 @@ namespace MVC.Controllers
         // {
         //     return View();
         // }
+        # region Login Methods
         public IActionResult Index()
         {
             //Test Added
