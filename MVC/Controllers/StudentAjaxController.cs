@@ -38,6 +38,13 @@ namespace MVC.Controllers
             return Json(students);
         }
 
+        [HttpPost]
+        public IActionResult addStudent(StudentModel student){
+            // Console.WriteLine("Name: "+student.c_studname);
+            string message = _studentInterface.AddStudent(student);
+            return Json(message);
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

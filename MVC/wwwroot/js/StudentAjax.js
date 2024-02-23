@@ -87,22 +87,21 @@ $(document).ready(function () {
     });
     function AddStudent() {
         var student = {
+            c_studid: 0,
             c_studname: $('#studname').val(),
             c_studage: parseInt($('#studage').val()),
-            c_studgender: $('input[name="studgender"]:checked').val(),
-            c_studphone: $('#studphone').val(),
-            c_studlanguage: $('input[name="studlanguage"]:checked').map(function () { return this.value; }).get(),
-            c_studcoursename: $("#DropdownListArea").val(),
+            c_studphone: parseInt($('#studphone').val()),
+            c_studcourse: $("#DropdownListArea").val(),
             c_studaddress: $('#studAddress').val(),
         }
         // Debug
-        // console.log(student.c_studimage);
+        console.log(student);
 
         $.ajax({
-            url: 'https://localhost:7093/api/StudentApi/addStudent',
+            url: '/StudentAjax/addStudent',
             type: 'POST',
-            data: JSON.stringify(student),
-            contentType: 'application/json',
+            data: student,
+            dataType: 'json',
         }).done((data) => {
             successMsg(data.message);
             getStudents();
