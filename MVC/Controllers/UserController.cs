@@ -38,6 +38,7 @@ namespace MVC.Controllers
             return View();
         }
         [HttpPost]
+        //Reset to Original working Commit
         public IActionResult Login(LoginModel user)
         {
             var session = _httpContextAccessor.HttpContext.Session;
