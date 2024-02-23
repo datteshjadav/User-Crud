@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MVC.Models;
+using MVC.Repositories;
 using Npgsql;
 
 namespace WebApi.Repositories
@@ -14,47 +15,35 @@ namespace WebApi.Repositories
         {
             conn = configuration.GetConnectionString("ConStr");
         }
-        public List<Register> GetUserRegister()
+        public void Register(Register register)
         {
-            var userList = new List<Register>();
-
             using (NpgsqlConnection con = new NpgsqlConnection(conn))
             {
                 try
                 {
-                    var qry = "SELECT c_userid,c_username,c_email,c_password,c_gender,c_hobby,c_image FROM mvc_repo.t_register ORDER BY c_userid";
-                    using (NpgsqlCommand cmd = new NpgsqlCommand(qry, con))
+                    using (NpgsqlCommand cmd = new NpgsqlCommand("INSERT INTO mvc_repo.t_register(c_username, c_email, c_password, c_gender, c_hobby, c_image)VALUES (@username, @email, @password, @gender, @hobby, @image)", con))
                     {
+                        cmd.Parameters.AddWithValue("@username", register.c_username);
+                        cmd.Parameters.AddWithValue("@email", register.c_email);
+                        cmd.Parameters.AddWithValue("@password", register.c_password);
+                        cmd.Parameters.AddWithValue("@gender", register.c_gender);
+                        cmd.Parameters.AddWithValue("@hobby", register.c_hobby);
+                        cmd.Parameters.AddWithValue("@image", register.c_image);
+
+                        //image processing
+
                         con.Open();
-                        var reader = cmd.ExecuteReader();
-
-                        while (reader.Read())
-                        {
-
-                            var user = new Register
-                            {
-                                c_userid = (int)reader["c_userid"],
-                                c_username = (string)reader["c_username"],
-                                c_email = (string)reader["c_email"],
-                                c_password = (string)reader["c_password"],
-                                c_gender = (string)reader["c_gender"],
-                                c_hobby = (string)reader["c_hobby"],
-                                c_image = (string)reader["c_image"]
-                            };
-                            userList.Add(user);
-                        }
                     }
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("######nGet User Repo error: " + e);
+                    Console.WriteLine("#### Register Helper Error #### " + e);
                 }
                 finally
                 {
                     con.Close();
                 }
             }
-            return userList;
         }
     }
 }

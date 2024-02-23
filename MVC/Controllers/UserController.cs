@@ -5,7 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using WebApi.Repositories;
+using MVC.Models;
+using MVC.Repositories;
 
 namespace MVC.Controllers
 {
@@ -35,10 +36,15 @@ namespace MVC.Controllers
         // [Produces("application/json")]
 
         [HttpGet]
-        public IActionResult GetUserRegister()
+        public IActionResult Register()
         {
-            var user = _userHelperClass.GetUserRegister();
-            return View(user);
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Register(Register register)
+        {
+            _userHelperClass.Register(register);
+            return RedirectToAction("Login","User");
         }
 
         #endregion

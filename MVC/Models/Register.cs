@@ -34,7 +34,7 @@ namespace MVC.Models
         public string c_gender { get; set; } = string.Empty;
 
         [Display(Name = "Hobby")]
-        public string? c_hobby { get; set; }
+        public string[]? c_hobby { get; set; }
 
         [Display(Name = "Image")]
         [Required(ErrorMessage = "Please Select an Image.")]

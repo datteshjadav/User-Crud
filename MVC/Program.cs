@@ -1,3 +1,4 @@
+using MVC.Repositories;
 using WebApi.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 //Registering Repositories
-builder.Services.AddSingleton<IUserInterface,UserHelperClass>();
+builder.Services.AddSingleton<IUserInterface, UserHelperClass>();
 
 var app = builder.Build();
 
