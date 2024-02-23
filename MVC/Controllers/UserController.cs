@@ -30,10 +30,15 @@ namespace MVC.Controllers
         //     return View();
         // }
         # region Login Methods
-        public IActionResult Index()
+        public IActionResult Login()
         {
             //Test Added
-            return View();
+            var session = _httpContextAccessor.HttpContext.Session;
+            if(session.GetInt32("userid") == null){
+                return View();
+            }else{
+                return RedirectToAction("Index","Home");
+            }
         }
         [HttpPost]
         //Reset to Original working Commit
