@@ -29,12 +29,9 @@ namespace MVC.Controllers
         // {
         //     return View();
         // }
-
-        #region Login Methods
-
-        [HttpGet]
-        public IActionResult Login()
+        public IActionResult Index()
         {
+            //Test Added
             return View();
         }
         [HttpPost]
