@@ -7,6 +7,5 @@ namespace WebApi.Repositories
 {
     public interface IUserInterface
     {
-        
     }
 }
