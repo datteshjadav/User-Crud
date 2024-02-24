@@ -44,6 +44,12 @@ namespace MVC.Controllers
             string message = _studentInterface.AddStudent(student);
             return Json(message);
         }
+        [HttpGet]
+        public IActionResult GetStudentDetails(int id){
+            // Console.WriteLine("Name: "+student.c_studname);
+            StudentModel student = _studentInterface.GetOneStudent(id);
+            return Json(student);
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

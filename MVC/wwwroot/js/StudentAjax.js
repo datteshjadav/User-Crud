@@ -118,26 +118,18 @@ $(document).ready(function () {
 
         //getting the student values
         $.ajax({
-            url: 'https://localhost:7093/api/StudentApi/GetStudentDetails',
+            url: '/StudentAjax/GetStudentDetails',
             method: 'GET',
             data: {id:id},
             contentType: 'application/json',
             timeout: 0
         }).done((student) => {
-            // console.log(student);
+            console.log(student);
             $('#EditStudentId').attr('data-id', id);
             $('#editstudname').val(student.c_studname);
             $('#editstudage').val(student.c_studage);
-            if (student.c_studgender == 'M') {
-                $("input[name='editstudgender'][value='M']").prop("checked", true);
-            } if (student.c_studgender == 'F') {
-                $("input[name='editstudgender'][value='F']").prop("checked", true);
-            } if (student.c_studgender == 'O') {
-                $("input[name='editstudgender'][value='O']").prop("checked", true);
-            }
             $('#editstudphone').val(parseInt(student.c_studphone));
-            $('input[name="editstudlanguage"]').val(student.c_studlanguage);
-            $("#EditDropdownListArea").val(student.c_studcoursename);
+            $("#EditDropdownListArea").val(student.c_studcourse);
             $('#EditStudAddress').val(student.c_studaddress);
             getDropdownValues();
         });
