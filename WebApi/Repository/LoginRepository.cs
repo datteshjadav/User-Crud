@@ -2,17 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using MVC.Models;
 using Npgsql;
+using WebApi.Models;
 
-namespace WebApi.Repositories
+namespace WebApi.Repository
 {
-    public class UserHelperClass : IUserInterface
+    public class LoginRepository
     {
         private readonly string? _conn;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private NpgsqlConnection connection;
-        public UserHelperClass(IConfiguration configuration, IHttpContextAccessor httpContextAccessor)
+        public LoginRepository(IConfiguration configuration, IHttpContextAccessor httpContextAccessor)
         {
             _conn = configuration.GetConnectionString("ConStr");
             _httpContextAccessor = httpContextAccessor;
@@ -50,11 +50,6 @@ namespace WebApi.Repositories
                 connection.Close();
             }
             return isUserAuthenticated;
-        }
-    
-        public void SignOut(){
-            var session = _httpContextAccessor.HttpContext.Session;
-            session.Clear();
         }
     }
 }
