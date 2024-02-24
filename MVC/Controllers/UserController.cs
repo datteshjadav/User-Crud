@@ -15,10 +15,12 @@ namespace MVC.Controllers
     {
         private readonly ILogger<UserController> _logger;
         private readonly IUserInterface _userHelperClass;
-        public UserController(ILogger<UserController> logger, IUserInterface userHelperClass)
+        private readonly IWebHostEnvironment _environment; 
+        public UserController(ILogger<UserController> logger, IUserInterface userHelperClass,IWebHostEnvironment environment)
         {
             _logger = logger;
             _userHelperClass = userHelperClass;
+             _environment = environment;
         }
 
         // public IActionResult Index()
@@ -43,6 +45,23 @@ namespace MVC.Controllers
         [HttpPost]
         public IActionResult Register(Register register)
         {
+            //Code For File Upload:
+            if (register.Image != null && register.Image.Length > 0)
+            {
+                var uploadsFolder = Path.Combine(_environment.WebRootPath, "uploadsimg");
+                var uniqueFileName = Guid.NewGuid().ToString() + "_" + register.Image.FileName;
+                //var uniqueFileName =  item.Image.FileName; //To Get Only File Name
+                var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    register.Image.CopyTo(stream);
+                }
+
+                // Save The File Path To Our DB Table In c_image Field:
+                register.c_image = uniqueFileName;
+            }
+
             _userHelperClass.Register(register);
             return RedirectToAction("Index","Home");
         }

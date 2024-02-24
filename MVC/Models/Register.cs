@@ -39,5 +39,7 @@ namespace MVC.Models
         [Display(Name = "Image")]
         [Required(ErrorMessage = "Please Select an Image.")]
         public string c_image { get; set; } = string.Empty;
+
+        public IFormFile  Image {get;set;} //IFormFile For File Upload
     }
 }

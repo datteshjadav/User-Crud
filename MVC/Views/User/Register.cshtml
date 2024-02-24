@@ -35,6 +35,7 @@
                 @Html.RadioButtonFor(m => m.c_gender, "Male") Male
                 @Html.RadioButtonFor(m => m.c_gender, "Female") Female
             </div>
+            
             @* <div class="mb-3">
             <label class="form-label">Hobby: </label><br>
             <input type="checkbox" id="hobby1" name="hobby" value="Hobby1" asp-for="c_hobby">
@@ -44,9 +45,10 @@
             <input type="checkbox" id="hobby3" name="hobby" value="Hobby3" asp-for="c_hobby">
             <label for="hobby3">Chess</label><br>
             </div> *@
+
             <div class="mb-3">
-                <label for="inputImage" class="form-label">Image: </label>
-                <input type="text" class="form-control" id="inputImage" asp-for="c_image">
+                <label for="inputImage" class="form-label" asp-for="Image">Image: </label>
+                <input type="file" class="form-control" id="inputImage" asp-for="Image">
                 <span class="text-danger">@Html.ValidationMessageFor(Register => Register.c_image)</span>
             </div>
             <button type="submit" class="btn btn-primary">Register</button>
