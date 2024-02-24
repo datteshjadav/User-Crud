@@ -20,7 +20,8 @@
             </div>
             <div class="mb-3">
                 <label for="inputPassword" class="form-label">Password: </label>
-                <input type="password" class="form-control" id="inputPassword" placeholder="Password" asp-for="c_password">
+                <input type="password" class="form-control" id="inputPassword" placeholder="Password"
+                    asp-for="c_password">
                 <span class="text-danger">@Html.ValidationMessageFor(Register => Register.c_password)</span>
             </div>
             <div class="mb-3">
@@ -39,17 +40,17 @@
                 <label for="other">Other</label><br>
             </div>
             @* <div class="mb-3">
-                <label class="form-label">Hobby: </label><br>
-                <input type="checkbox" id="hobby1" name="hobby" value="Hobby1" asp-for="c_hobby">
-                <label for="hobby1">Cricket</label><br>
-                <input type="checkbox" id="hobby2" name="hobby" value="Hobby2" asp-for="c_hobby">
-                <label for="hobby2">Football</label><br>
-                <input type="checkbox" id="hobby3" name="hobby" value="Hobby3" asp-for="c_hobby">
-                <label for="hobby3">Chess</label><br>
+            <label class="form-label">Hobby: </label><br>
+            <input type="checkbox" id="hobby1" name="hobby" value="Hobby1" asp-for="c_hobby">
+            <label for="hobby1">Cricket</label><br>
+            <input type="checkbox" id="hobby2" name="hobby" value="Hobby2" asp-for="c_hobby">
+            <label for="hobby2">Football</label><br>
+            <input type="checkbox" id="hobby3" name="hobby" value="Hobby3" asp-for="c_hobby">
+            <label for="hobby3">Chess</label><br>
             </div> *@
             <div class="mb-3">
                 <label for="inputImage" class="form-label">Image: </label>
-                <input type="file" class="form-control" id="inputImage" asp-for="c_image">
+                <input type="text" class="form-control" id="inputImage" asp-for="c_image">
                 <span class="text-danger">@Html.ValidationMessageFor(Register => Register.c_image)</span>
             </div>
             <button type="submit" class="btn btn-primary">Register</button>
