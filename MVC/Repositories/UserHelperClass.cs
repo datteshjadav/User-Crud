@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using MVC.Models;
 using Npgsql;
 
-namespace WebApi.Repositories
+namespace MVC.Repositories
 {
     public class UserHelperClass : IUserInterface
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MVC.Models;
 
-namespace WebApi.Repositories
+namespace MVC.Repositories
 {
     public interface IUserInterface
     {
