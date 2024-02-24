@@ -32,12 +32,8 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">Gender: </label><br>
-                <input type="radio" id="male" name="gender" value="Male" asp-for="c_gender">
-                <label for="male">Male</label><br>
-                <input type="radio" id="female" name="gender" value="Female" asp-for="c_gender">
-                <label for="female">Female</label><br>
-                <input type="radio" id="other" name="gender" value="Other" asp-for="c_gender">
-                <label for="other">Other</label><br>
+                @Html.RadioButtonFor(m => m.c_gender, "Male") Male
+                @Html.RadioButtonFor(m => m.c_gender, "Female") Female
             </div>
             @* <div class="mb-3">
             <label class="form-label">Hobby: </label><br>
