@@ -13,44 +13,45 @@
                 <input type="text" class="form-control" id="inputUsername" placeholder="Username" asp-for="c_username">
                 <span class="text-danger">@Html.ValidationMessageFor(Register => Register.c_username)</span>
             </div>
+
             <div class="mb-3">
                 <label for="inputEmail" class="form-label">Email address: </label>
                 <input type="email" class="form-control" id="inputEmail" placeholder="Email" asp-for="c_email">
                 <span class="text-danger">@Html.ValidationMessageFor(Register => Register.c_email)</span>
             </div>
+
             <div class="mb-3">
                 <label for="inputPassword" class="form-label">Password: </label>
                 <input type="password" class="form-control" id="inputPassword" placeholder="Password"
                     asp-for="c_password">
                 <span class="text-danger">@Html.ValidationMessageFor(Register => Register.c_password)</span>
             </div>
+
             <div class="mb-3">
                 <label for="inputConfirmPassword" class="form-label">Confirm Password: </label>
                 <input type="password" class="form-control" id="inputConfirmPassword" placeholder="Confirm Password"
                     asp-for="c_confirmpassword">
                 <span class="text-danger">@Html.ValidationMessageFor(Register => Register.c_confirmpassword)</span>
             </div>
+
             <div class="mb-3">
                 <label class="form-label">Gender: </label><br>
                 @Html.RadioButtonFor(m => m.c_gender, "Male") Male
                 @Html.RadioButtonFor(m => m.c_gender, "Female") Female
             </div>
             
-            @* <div class="mb-3">
-            <label class="form-label">Hobby: </label><br>
-            <input type="checkbox" id="hobby1" name="hobby" value="Hobby1" asp-for="c_hobby">
-            <label for="hobby1">Cricket</label><br>
-            <input type="checkbox" id="hobby2" name="hobby" value="Hobby2" asp-for="c_hobby">
-            <label for="hobby2">Football</label><br>
-            <input type="checkbox" id="hobby3" name="hobby" value="Hobby3" asp-for="c_hobby">
-            <label for="hobby3">Chess</label><br>
-            </div> *@
+            <div class="mb-3">
+                @Html.CheckBoxFor(m => m.c_hobbytravel, "Travel") Travel
+                @Html.CheckBoxFor(m => m.c_hobbycricket, "Cricket") Cricket
+                @Html.CheckBoxFor(m => m.c_hobbycoding, "Coding") Coding
+            </div>
 
             <div class="mb-3">
                 <label for="inputImage" class="form-label" asp-for="Image">Image: </label>
                 <input type="file" class="form-control" id="inputImage" asp-for="Image">
                 <span class="text-danger">@Html.ValidationMessageFor(Register => Register.c_image)</span>
             </div>
+            
             <button type="submit" class="btn btn-primary">Register</button>
         </form>
     </div>
