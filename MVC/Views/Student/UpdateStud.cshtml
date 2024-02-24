@@ -35,13 +35,26 @@
             </div>
         </div>
 
-        <div class="form-group">
+        @* <div class="form-group">
             <label asp-for="c_studcourse">Select Course:</label>
             <select asp-for="c_studcourse" class="form-control" required>
                 <option value="MCA">MCA</option>
                 <option value="ICT">ICT</option>
                 <option value="BTech">BTech</option>
-                <!-- Add more options as needed -->
+            </select>
+            <div class="invalid-feedback">
+                Please select a course.
+            </div>
+        </div> *@
+
+         <div class="form-group">
+            <label asp-for="c_studcourse">Select Course:</label>
+            <select asp-for="c_studcourse" class="form-control" required>
+                <option value="">-- Select Course --</option>
+                @foreach (var course in ViewBag.Courses)
+                {
+                    <option value="@course">@course</option>
+                }
             </select>
             <div class="invalid-feedback">
                 Please select a course.

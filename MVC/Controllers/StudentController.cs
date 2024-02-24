@@ -37,6 +37,13 @@ namespace MVC.Controllers
             return View(studData);
         }
 
+        //Get Course DropDown Values:
+        [HttpGet]
+        public string[] GetCourse()
+        {
+            return _studrepo.GetCourse();
+        }
+        
         //Get a Particular Student Details Using GetAllStudDetails():
         [HttpGet]
         public IActionResult GetAllStudDetails(int id)
@@ -49,6 +56,7 @@ namespace MVC.Controllers
         [HttpGet]
         public IActionResult AddStud()
         {
+            ViewBag.Courses = _studrepo.GetCourse();
             return View();
         }
 
@@ -64,6 +72,7 @@ namespace MVC.Controllers
         [HttpGet]
         public IActionResult UpdateStud(int id)
         {
+            ViewBag.Courses = _studrepo.GetCourse();
             var studUpdate = _studrepo.GetOneStudent(id);
             return View(studUpdate);
         }
