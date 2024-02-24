@@ -1,5 +1,6 @@
 using Microsoft.Extensions.Options;
-using WebApi.Repositories;
+using MVC.Repositories;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,7 @@ builder.Services.AddSession(Options=>{
 });
 //Registering Repositories
 builder.Services.AddSingleton<IUserInterface,UserHelperClass>();
+builder.Services.AddSingleton<IStudentInterface,StudentRepo>();
 
 var app = builder.Build();
 
