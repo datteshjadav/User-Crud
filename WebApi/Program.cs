@@ -11,6 +11,7 @@ builder.Services.AddSwaggerGen();
 
 //Registering Repositories
 builder.Services.AddSingleton<IUserInterface, UserHelperClass>();
+builder.Services.AddSingleton<IStudentInterface,StudentRepo>();
 
 
 var app = builder.Build();
