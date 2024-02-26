@@ -15,18 +15,23 @@ namespace MVC.Controllers
     {
         private readonly ILogger<StudentController> _logger;
         private readonly IStudentInterface _studrepo;
-        //private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public StudentController(ILogger<StudentController> logger, IStudentInterface studrepo)
+        public StudentController(ILogger<StudentController> logger, IStudentInterface studrepo, IHttpContextAccessor httpContextAccessor)
         {
             _logger = logger;
             _studrepo = studrepo;
-            //_httpContextAccessor = httpContextAccessor;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var session = _httpContextAccessor.HttpContext.Session;
+            if (session.GetInt32("userid") != null){
+                return View();
+            }else{
+                return RedirectToAction("Login", "User");
+            }
         }
 
         //Get All Student Data(Display)
