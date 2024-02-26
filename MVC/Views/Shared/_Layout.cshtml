@@ -27,12 +27,12 @@
                     {
                         <ul class="navbar-nav flex-grow-1">
                             <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Register" asp-controller="User"
-                            asp-action="Register">Register</a>
+                                <span><a class="nav-link text-dark" asp-area="Register" asp-controller="User"
+                                    asp-action="Register">Register</a></span>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="Login" asp-controller="User"
-                                    asp-action="Privacy">Login</a>
+                                <span><a class="nav-link text-dark" asp-area="Login" asp-controller="User"
+                                    asp-action="Privacy">Login</a></span>
                             </li>
                         </ul>
                     }
@@ -40,13 +40,13 @@
                     {
                         <ul class="navbar-nav flex-grow-1">
                             <li class="nav-item">
-                                <p class="nav-link text-dark">Welcome @session.GetString("username") !!!!</p>
+                                <span class="nav-link text-dark">Welcome @session.GetString("username") !!!!</span>
                             </li>
                             <li class="nav-item">
-                                <a class="btn btn-primary"  asp-controller="User"
-                                    asp-action="SignOut">Signout</a>
+                                <span><a class="btn btn-outline-primary"  asp-controller="User"
+                                    asp-action="SignOut">Signout</a></span>
                             </li>
-                    </ul>
+                        </ul>
                     }
                 </div>
             </div>
