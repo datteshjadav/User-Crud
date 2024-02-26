@@ -14,6 +14,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
 //Registering Repositories
 builder.Services.AddSingleton<IUserInterface, UserHelperClass>();
 builder.Services.AddSingleton<IStudentInterface,StudentRepo>();
@@ -66,6 +67,7 @@ builder.Services.AddAuthentication(option =>
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
     };
 });
+
 builder.Services.AddCors(p => p.AddPolicy("corsapp",builder =>
 {
     builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();

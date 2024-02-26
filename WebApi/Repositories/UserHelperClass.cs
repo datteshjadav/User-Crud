@@ -52,6 +52,7 @@ namespace WebApi.Repositories
             return isUserAuthenticated;
         }
     
+
         public Register ApiLogin(LoginModel user)
         {
             Register userDetails = new Register();
@@ -86,6 +87,7 @@ namespace WebApi.Repositories
             return userDetails;
         }
     
+
         public void SignOut(){
             // var session = _httpContextAccessor.HttpContext.Session;
             // session.Clear();
