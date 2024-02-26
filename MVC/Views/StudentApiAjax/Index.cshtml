@@ -1,0 +1,170 @@
+@{
+    ViewData["Title"] = "Student Ajax CURD Page";
+}
+<div class="table-responsive">
+    @* Add Button *@
+    <button type="button" class="btn btn-primary mb-3" id="AddStudentModelBtn" data-bs-toggle="modal"
+        data-bs-target="#AddStudentModel">
+        Add Button
+    </button>
+
+    @* Message *@
+    <div class="alert alert-success text-center" role="alert" id="messageSuccess"></div>
+    <div class="alert alert-danger text-center" role="alert" id="messageFail"></div>
+
+    </center>
+
+    @* Table HTML *@
+    <table class="table text-center">
+        <thead>
+            <th scope="col" Studnet Id</th>
+            <th scope="col">Student Name</th>
+            <th scope="col">Age</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Course Name</th>
+            <th scope="col">Address</th>
+            <th scope="col">Action</th>
+        </thead>
+        <tbody id="TableContent">
+
+        </tbody>
+    </table>
+</div>
+
+@{
+    #region Add Modal
+}
+
+<!-- Add Modal -->
+<div class="modal fade" id="AddStudentModel" tabindex="-1" aria-labelledby="AddStudentModelLabel" aria-hidden="true"
+    enctype="multipart/form-data">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="AddStudentModelLabel">Add Student</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post" enctype="multipart/form-data">
+                <div class="modal-body">
+
+                    @* Student Name *@
+                    <div class="mb-3">
+                        <label>Student Name: </label>
+                        <input type="text" id="studname">
+                        <span class="text-danger" id="StudNameHelp"></span>
+                    </div>
+                    @* Age *@
+                    <div class="mb-3">
+                        <label>Age: </label>
+                        <input type="number" id="studage">
+                        <span class="text-danger" id="StudAgeHelp"></span>
+                    </div>
+                    @* Phone Number *@
+                    <div class="mb-3">
+                        <label>Phone Number: </label>
+                        <input type="text" id="studphone">
+                        <span class="text-danger" id="StudPhoneHelp"></span>
+                    </div>
+                    @* Course *@
+                    <div class="mb-3">
+                        <div class="dropdown">
+                            <label>Course Name: </label>
+                            <select class="btn btn-secondary dropdown-toggle" id="DropdownListArea"
+                                name="courseNameDropdown" id="courseNameDropdown">
+
+                            </select>
+                        </div>
+                        <span class="text-danger" id="StudCourseHelp"></span>
+                    </div>
+                    @* Address *@
+                    <div class="mb-3">
+                        <div class="form-floating">
+                            <textarea class="form-control" placeholder="Leave a comment here" id="studAddress"
+                                style="height: 100px"></textarea>
+                            <label for="floatingTextarea2">Address</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="printbtn" data-bs-dismiss="modal">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@{
+    #endregion
+}
+
+@{
+    #region Edit Modal
+}
+<!-- Edit Modal -->
+<div class="modal fade" id="EditStudentModel" tabindex="-1" aria-labelledby="EditStudentModelLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="EditStudentModelLabel">Edit Student</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post">
+                <div class="modal-body">
+                    @* Student ID *@
+                    <div class="mb-3">
+                        <input type="hidden" id="EditStudentId" data-id="">
+                    </div>
+                    @* Student Name *@
+                    <div class="mb-3">
+                        <label>Student Name: </label>
+                        <input type="text" id="editstudname">
+                        <span class="text-danger" id="StudNameHelp"></span>
+                    </div>
+                    @* Age *@
+                    <div class="mb-3">
+                        <label>Age: </label>
+                        <input type="number" id="editstudage">
+                        <span class="text-danger" id="StudAgeHelp"></span>
+                    </div>
+                    @* Phone Number *@
+                    <div class="mb-3">
+                        <label>Phone Number: </label>
+                        <input type="text" id="editstudphone">
+                        <span class="text-danger" id="StudPhoneHelp"></span>
+                    </div>
+                    @* Course *@
+                    <div class="mb-3">
+                        <div class="dropdown">
+                            <label>Course Name: </label>
+                            <select class="btn btn-secondary dropdown-toggle" id="EditDropdownListArea"
+                                name="courseNameDropdown">
+                            </select>
+                        </div>
+                        <span class="text-danger" id="StudCourseHelp"></span>
+                    </div>
+                    @* Address *@
+                    <div class="mb-3">
+                        <div class="form-floating">
+                            <textarea class="form-control" placeholder="Leave a comment here" id="EditStudAddress"
+                                style="height: 100px"></textarea>
+                            <label for="floatingTextarea2">Comments</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="FinalEditBtn"
+                        data-bs-dismiss="modal">Edit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@{
+    #endregion
+}
+
+@section Scripts{
+    <script src="~/js/StudentApiAjax.js" asp-append-version="true"></script>
+}
