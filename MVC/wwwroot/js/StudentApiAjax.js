@@ -5,7 +5,6 @@ $(document).ready(function () {
     function hideAlerts() {
         $('#messageSuccess').hide();
         $('#messageFail').hide();
-
     }
     function successMsg(str) {
         $("#messageSuccess").text('');
@@ -16,12 +15,10 @@ $(document).ready(function () {
         $("#messageFail").append(str);
         $("#messageFail").show().delay(3000).fadeOut();
     }
-
     //Clearing values
-    function clearValues(){
+    function clearValues() {
         $('#studname,#studage,input[name="studgender"],#studphone,input[name="studlanguage"],#DropdownListArea,#studAddress,#EditStudentId,#editstudname,#editstudage,input[name="editstudgender"],#editstudphone,input[name="editstudlanguage"],#EditDropdownListArea,#EditStudAddress').val('');
     }
-
     //Get DropDown Values
     function getDropdownValues() {
         var dropdown = $("#DropdownListArea , #EditDropdownListArea");
@@ -31,17 +28,16 @@ $(document).ready(function () {
             type: 'GET',
             // dataType: 'json',
             timeout: 0,
-            contentType:"application/json",
+            contentType: "application/json",
             success: function (data) {
                 data.forEach((course) => {
                     // console.log(book.bid);
-                    var row = '<option class="dropdown-item" value="'+course+'">' + course + '</option>';
+                    var row = '<option class="dropdown-item" value="' + course + '">' + course + '</option>';
                     dropdown.append(row);
                 });
             }
         });
     }
-
     //geting student details
     function getStudents() {
         $.ajax({
@@ -49,6 +45,9 @@ $(document).ready(function () {
             type: 'GET',
             dataType: 'json',
             timeout: 0,
+            headers: {
+                "Authorization": 'Bearer ' + localStorage.getItem('token')
+            },
             success: function (studentList) {
                 // console.log(studentList);
                 var tableContent = $('#TableContent');
@@ -75,10 +74,9 @@ $(document).ready(function () {
         });
     }
 
-    $('#AddStudentModelBtn').on('click',function(){
+    $('#AddStudentModelBtn').on('click', function () {
         getDropdownValues();
     });
-
     //Adding Student
     $('#printbtn').on('click', function () {
         AddStudent();
@@ -99,9 +97,12 @@ $(document).ready(function () {
         $.ajax({
             url: 'https://localhost:7051/api/StudentApi/AddStudent',
             type: 'POST',
-            data:JSON.stringify(student),
+            data: JSON.stringify(student),
             // dataType: 'json',
-            contentType:"application/json",
+            contentType: "application/json",
+            headers: {
+                "Authorization": 'Bearer ' + localStorage.getItem('token')
+            },
         }).done((data) => {
             successMsg(data.message);
             getStudents();
@@ -109,19 +110,21 @@ $(document).ready(function () {
         });
 
     }
-
     //Edit Student
     $(document).on('click', '#EditBtn', function () {
-        
+
         var id = $(this).data('id');
         // console.log(id);
 
         //getting the student values
         $.ajax({
-            url: 'https://localhost:7051/api/StudentApi/Getstudentbyid?id='+id,
+            url: 'https://localhost:7051/api/StudentApi/Getstudentbyid?id=' + id,
             method: 'GET',
-            data: {id:id},
-            dataType:"json",
+            data: { id: id },
+            dataType: "json",
+            headers: {
+                "Authorization": 'Bearer ' + localStorage.getItem('token')
+            },
             timeout: 0
         }).done((student) => {
             console.log(student);
@@ -135,7 +138,7 @@ $(document).ready(function () {
         });
     });
     //getting updated values
-    $('#FinalEditBtn').on('click',function(){
+    $('#FinalEditBtn').on('click', function () {
         var student = {
             c_studid: parseInt($('#EditStudentId').attr('data-id')),
             c_studname: $('#editstudname').val(),
@@ -148,8 +151,11 @@ $(document).ready(function () {
         $.ajax({
             url: 'https://localhost:7051/api/StudentApi/UpdateStudent',
             type: 'PUT',
-            data:JSON.stringify(student),
+            data: JSON.stringify(student),
             contentType: 'application/json',
+            headers: {
+                "Authorization": 'Bearer ' + localStorage.getItem('token')
+            },
             // dataType: 'json',
             timeout: 0,
             success: function (data) {
@@ -162,13 +168,16 @@ $(document).ready(function () {
     });
 
     // Delete Student
-    $(document).on('click','#DeleteBtn', function () {
+    $(document).on('click', '#DeleteBtn', function () {
         var id = $(this).attr('data-id');
         $.ajax({
-            url:'https://localhost:7051/api/StudentApi/DeleteStudent/id/'+id,
+            url: 'https://localhost:7051/api/StudentApi/DeleteStudent/id/' + id,
             type: 'DELETE',
+            headers: {
+                "Authorization": 'Bearer ' + localStorage.getItem('token')
+            },
             timeout: 0,
-            success: function(data){
+            success: function (data) {
                 getStudents();
                 alertMsg(data.message);
             }
