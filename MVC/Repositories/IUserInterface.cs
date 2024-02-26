@@ -10,5 +10,6 @@ namespace MVC.Repositories
     {
         bool Login(LoginModel user);
         void SignOut();
+        void Register(Register register);
     }
 }

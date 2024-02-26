@@ -10,7 +10,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //Registering Repositories
-builder.Services.AddSingleton<IUserInterface,UserHelperClass>();
+builder.Services.AddSingleton<IUserInterface, UserHelperClass>();
 
 
 var app = builder.Build();
