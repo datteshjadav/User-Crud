@@ -52,6 +52,42 @@ namespace WebApi.Repositories
             return isUserAuthenticated;
         }
     
+
+        public Register ApiLogin(LoginModel user)
+        {
+            Register userDetails = new Register();
+            bool isUserAuthenticated = false;
+            try
+            {
+                connection.Open();
+                using (var cmd = new NpgsqlCommand("Select * from mvc_repo.t_register Where c_email=@email and c_password=@password",connection))
+                {
+                    cmd.Parameters.AddWithValue("@email", user.c_email);
+                    cmd.Parameters.AddWithValue("@password", user.c_password);
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            userDetails.c_userid = (int)reader["c_userid"];
+                            userDetails.c_username = (string)reader["c_username"];
+                            userDetails.c_email = (string)reader["c_email"];
+                            userDetails.c_password = (string)reader["c_password"];
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error at Login" + e);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return userDetails;
+        }
+    
+
         public void SignOut(){
             // var session = _httpContextAccessor.HttpContext.Session;
             // session.Clear();
