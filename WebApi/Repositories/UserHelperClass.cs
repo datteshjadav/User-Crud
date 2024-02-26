@@ -11,12 +11,11 @@ namespace WebApi.Repositories
     public class UserHelperClass : IUserInterface
     {
         private readonly string? _conn;
-        private readonly IHttpContextAccessor _httpContextAccessor;
+    
         private NpgsqlConnection connection;
-        public UserHelperClass(IConfiguration configuration, IHttpContextAccessor httpContextAccessor)
+        public UserHelperClass(IConfiguration configuration)
         {
             _conn = configuration.GetConnectionString("ConStr");
-            _httpContextAccessor = httpContextAccessor;
             connection = new NpgsqlConnection(_conn);
         }
         public bool Login(LoginModel user)
@@ -33,10 +32,10 @@ namespace WebApi.Repositories
                     {
                         if (reader.Read())
                         {
-                            isUserAuthenticated = true;
-                            var session = _httpContextAccessor.HttpContext.Session;
-                            session.SetString("username", reader["c_username"].ToString());
-                            session.SetInt32("userid", (int)reader["c_userid"]);
+                            // isUserAuthenticated = true;
+                            // var session = _httpContextAccessor.HttpContext.Session;
+                            // session.SetString("username", reader["c_username"].ToString());
+                            // session.SetInt32("userid", (int)reader["c_userid"]);
 
                         }
                     }
@@ -54,8 +53,8 @@ namespace WebApi.Repositories
         }
     
         public void SignOut(){
-            var session = _httpContextAccessor.HttpContext.Session;
-            session.Clear();
+            // var session = _httpContextAccessor.HttpContext.Session;
+            // session.Clear();
         }
 
         public void Register(Register register)
