@@ -36,7 +36,7 @@ $(document).ready(function () {
             success: function (data) {
                 data.forEach((course) => {
                     // console.log(book.bid);
-                    var row = '<option class="dropdown-item" value="' + course + '">' + course + '</option>';
+                    var row = '<option class="dropdown-item" value="'+course+'">' + course + '</option>';
                     dropdown.append(row);
                 });
             }
@@ -125,13 +125,13 @@ $(document).ready(function () {
             timeout: 0
         }).done((student) => {
             console.log(student);
+            getDropdownValues();
             $('#EditStudentId').attr('data-id', id);
             $('#editstudname').val(student.c_studname);
             $('#editstudage').val(student.c_studage);
             $('#editstudphone').val(parseInt(student.c_studphone));
             $("#EditDropdownListArea").val(student.c_studcourse);
             $('#EditStudAddress').val(student.c_studaddress);
-            getDropdownValues();
         });
     });
     //getting updated values
@@ -140,18 +140,17 @@ $(document).ready(function () {
             c_studid: parseInt($('#EditStudentId').attr('data-id')),
             c_studname: $('#editstudname').val(),
             c_studage: parseInt($('#editstudage').val()),
-            c_studgender: $('input[name="editstudgender"]:checked').val(),
             c_studphone: $('#editstudphone').val(),
-            c_studlanguage: $('input[name="editstudlanguage"]:checked').map(function () { return this.value; }).get(),
-            c_studcoursename: $("#EditDropdownListArea").val(),
+            c_studcourse: $("#EditDropdownListArea").val(),
             c_studaddress: $('#EditStudAddress').val()
         }
         console.log(student);
         $.ajax({
-            url: 'https://localhost:7093/api/StudentApi/UpdateStudent',
+            url: '/StudentAjax/UpdateStudent',
             type: 'PUT',
-            data: JSON.stringify(student),
-            contentType: 'application/json',
+            data: student,
+            // contentType: 'application/json',
+            dataType: 'json',
             timeout: 0,
             success: function (data) {
                 getStudents();
@@ -166,7 +165,7 @@ $(document).ready(function () {
     $(document).on('click','#DeleteBtn', function () {
         var id = $(this).attr('data-id');
         $.ajax({
-            url:'https://localhost:7093/api/StudentApi/DeleteStudent?id='+id,
+            url:'/StudentAjax/DeleteStudent?id='+id,
             type: 'DELETE',
             timeout: 0,
             success: function(data){

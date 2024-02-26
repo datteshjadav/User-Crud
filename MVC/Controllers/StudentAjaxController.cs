@@ -42,13 +42,28 @@ namespace MVC.Controllers
         public IActionResult addStudent(StudentModel student){
             // Console.WriteLine("Name: "+student.c_studname);
             string message = _studentInterface.AddStudent(student);
-            return Json(message);
+            return Json(new {success = true, message = message});
         }
+        
         [HttpGet]
         public IActionResult GetStudentDetails(int id){
             // Console.WriteLine("Name: "+student.c_studname);
             StudentModel student = _studentInterface.GetOneStudent(id);
             return Json(student);
+        }
+        
+        [HttpPut]
+        public IActionResult UpdateStudent(StudentModel student){
+            // Console.WriteLine("Name: "+student.c_studname);
+            _studentInterface.UpdateStudent(student);
+            return Json(new {success = true, message = "Values updated"});
+        }
+        
+        [HttpDelete]
+        public IActionResult DeleteStudent(int id){
+            // Console.WriteLine("Name: "+student.c_studname);
+            _studentInterface.DeleteStudent(id);
+            return Json(new {success = true, message = "Student Deleted"});
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
