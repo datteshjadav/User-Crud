@@ -1,0 +1,18 @@
+@model StudentModel
+
+@{
+    ViewData["Title"] = "GetStudentDetails";
+}
+
+<h2>Student Details</h2>
+
+<div>
+    <strong>Student Id:</strong> @Model.c_studid <br />
+    <strong>Student Name:</strong> @Model.c_studname <br />
+    <strong>Student Age:</strong> @Model.c_studage <br />
+    <strong>Student Mobno:</strong> @Model.c_studphone <br />
+    <strong>Student Course:</strong> @Model.c_studcourse <br />
+    <strong>Student Address:</strong> @Model.c_studaddress <br />
+</div>
+
+<a asp-action="GetAllStudData">Back to List</a>
