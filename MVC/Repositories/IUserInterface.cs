@@ -8,6 +8,8 @@ namespace MVC.Repositories
 {
     public interface IUserInterface
     {
+        bool Login(LoginModel user);
+        void SignOut();
         void Register(Register register);
     }
 }
